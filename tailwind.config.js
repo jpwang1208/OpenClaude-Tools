@@ -1,0 +1,135 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#6366F1',
+          hover: '#4F46E5',
+          active: '#4338CA',
+          50: '#EEF2FF',
+          100: '#E0E7FF',
+          200: '#C7D2FE',
+          300: '#A5B4FC',
+          400: '#818CF8',
+          500: '#6366F1',
+          600: '#4F46E5',
+          700: '#4338CA',
+          800: '#3730A3',
+          900: '#312E81',
+        },
+        secondary: {
+          DEFAULT: '#8B5CF6',
+          50: '#F5F3FF',
+          100: '#EDE9FE',
+          200: '#DDD6FE',
+          300: '#C4B5FD',
+          400: '#A78BFA',
+          500: '#8B5CF6',
+          600: '#7C3AED',
+          700: '#6D28D9',
+          800: '#5B21B6',
+          900: '#4C1D95',
+        },
+        accent: {
+          DEFAULT: '#06B6D4',
+          50: '#ECFEFF',
+          100: '#CFFAFE',
+          200: '#A5F3FC',
+          300: '#67E8F9',
+          400: '#22D3EE',
+          500: '#06B6D4',
+          600: '#0891B2',
+          700: '#0E7490',
+          800: '#155E75',
+          900: '#164E63',
+        },
+        dark: {
+          bg: '#0F0F23',
+          elevated: '#1A1A2E',
+          surface: '#16162A',
+          hover: '#252540',
+          border: '#2D2D44',
+        },
+        light: {
+          bg: '#F8FAFC',
+          elevated: '#FFFFFF',
+          surface: '#F1F5F9',
+          hover: '#E2E8F0',
+          border: '#E2E8F0',
+        },
+        success: {
+          DEFAULT: '#10B981',
+          light: 'rgba(16, 185, 129, 0.15)',
+        },
+        warning: {
+          DEFAULT: '#F59E0B',
+          light: 'rgba(245, 158, 11, 0.15)',
+        },
+        error: {
+          DEFAULT: '#EF4444',
+          light: 'rgba(239, 68, 68, 0.15)',
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'SF Pro Display', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'SF Mono', 'Monaco', 'monospace'],
+      },
+      fontSize: {
+        'h1': ['28px', { lineHeight: '1.2', fontWeight: '700' }],
+        'h2': ['22px', { lineHeight: '1.3', fontWeight: '600' }],
+        'h3': ['18px', { lineHeight: '1.4', fontWeight: '600' }],
+        'body': ['14px', { lineHeight: '1.5', fontWeight: '400' }],
+        'small': ['12px', { lineHeight: '1.5', fontWeight: '400' }],
+      },
+      spacing: {
+        'xs': '4px',
+        'sm': '8px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        '2xl': '32px',
+        '3xl': '48px',
+      },
+      borderRadius: {
+        'card': '12px',
+        'btn': '8px',
+        'tag': '12px',
+      },
+      boxShadow: {
+        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        'card-dark': '0 4px 6px -1px rgba(0, 0, 0, 0.3)',
+        'glow': '0 0 20px rgba(99, 102, 241, 0.3)',
+      },
+      transitionDuration: {
+        'fast': '150ms',
+        'base': '200ms',
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.3s ease-out',
+        'slide-up': 'slideUp 0.3s ease-out',
+        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        pulseGlow: {
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(99, 102, 241, 0.4)' },
+          '50%': { boxShadow: '0 0 20px 4px rgba(99, 102, 241, 0.2)' },
+        },
+      },
+    },
+  },
+  plugins: [],
+}

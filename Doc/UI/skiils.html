@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Skills Management - OpenClaudeSync</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-primary': '#818cf8',
+            'brand-secondary': '#6366f1',
+            'tech-bg': '#f8fafc',
+            'tech-sidebar': '#ffffff',
+            'tech-card-bg': '#ffffff',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-layouts">
+    .active-nav-item {
+      background-color: #f5f3ff;
+      color: #6366f1;
+    }
+    .gradient-btn {
+      background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+    }
+    .card-hover:hover {
+      box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 15px -5px rgba(0, 0, 0, 0.04);
+      transform: translateY(-4px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card {
+      background: white;
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 10px -2px rgba(0, 0, 0, 0.03);
+    }
+    .gradient-border-card {
+      background: white;
+      border: 1px solid #f1f5f9;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 10px -2px rgba(0, 0, 0, 0.03);
+    }
+    .gradient-border-card:hover {
+      border-color: #e0e7ff;
+    }
+    .active-nav-item {
+      background: #f5f3ff;
+      color: #6366f1 !important;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body class="bg-tech-bg text-slate-800 font-sans flex h-screen overflow-hidden">
+<!-- BEGIN: Sidebar -->
+<aside class="w-64 bg-tech-sidebar border-r border-slate-200 flex flex-col shrink-0" data-purpose="main-sidebar">
+<div class="p-6 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg flex items-center justify-center text-white bg-[#10B981]" style="background-color: #6366f1;">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<span class="font-bold text-lg tracking-tight" style="">OpenClaudeSync</span>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-white/50 transition-colors" href="#" style="">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="" style="">MCP 管理</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 font-semibold active-nav-item" href="#" style="">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="" style="">Skills 管理</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-white/50 transition-colors" href="#" style="">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" x2="12" y1="22.08" y2="12"></line></svg>
+<span class="" style="">第三方模型管理</span>
+</a>
+</nav>
+</aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: Main Layout -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- BEGIN: Top Navigation -->
+<header class="h-16 border-b border-slate-200 flex items-center justify-between px-8 bg-white/80 backdrop-blur-md shrink-0 sticky top-0 z-10">
+<div class="flex items-center bg-slate-100 p-1 rounded-xl">
+<button class="px-6 py-1.5 rounded-lg bg-white shadow-sm text-sm font-medium text-slate-800" style="color: #6366f1;">OpenCode</button>
+<button class="px-6 py-1.5 rounded-lg text-sm font-medium text-slate-500 hover:text-slate-700" style="">Claude code</button>
+</div>
+<div class="flex items-center gap-5 text-slate-400">
+<button class="hover:text-slate-600" style=""><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+<button class="hover:text-slate-600" style=""><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+<button class="hover:text-slate-600" style=""><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774a1.125 1.125 0 01.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738a1.125 1.125 0 01-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527a1.125 1.125 0 01-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 01.12-1.45l.774-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+</div>
+</header>
+<!-- END: Top Navigation -->
+<!-- BEGIN: Main Content Area -->
+<main class="flex-1 overflow-y-auto p-8 bg-tech-bg" data-purpose="main-scroll-area">
+<!-- Content Header Section -->
+<div class="flex justify-between items-start mb-8">
+<div>
+<h1 class="text-3xl font-bold text-slate-900 mb-2" style="">Skills 管理</h1>
+<p class="text-slate-500" style="">扩展您的 AI 助手能力，支持自定义脚本与自动化流程</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-slate-200 text-slate-700 rounded-xl font-medium hover:bg-slate-300 transition-all shadow-sm" style="">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M7.5 12l4.5 4.5m0 0l4.5-4.5M12 3v13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+            备份技能
+          </button>
+<button class="flex items-center gap-2 px-6 py-2.5 gradient-btn text-white rounded-xl font-bold hover:opacity-90 transition-all shadow-md" style="background: linear-gradient(135deg, #a78bfa 0%, #818cf8 100%);">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+            添加新Skills</button>
+</div>
+</div>
+<!-- Folder Selector Card -->
+<div class="rounded-2xl p-6 border border-slate-200 mb-8 shadow-sm glass-card">
+<div class="flex items-center gap-2 mb-4">
+<svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-bold text-slate-800" style="">项目文件夹配置</span>
+</div>
+<div class="flex gap-3">
+<div class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 flex items-center gap-3">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 000-7.5h-.745a5.997 5.997 0 00-11.038 0H6.75a4.5 4.5 0 00-4.5 4.5z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-slate-600 font-mono text-sm" style="">/Users/admin/projects/mcp-demo</span>
+</div>
+<button class="px-6 border rounded-xl font-medium hover:bg-brand-purple hover:text-white transition-all border-[#10B981] text-[#10B981] hover:bg-indigo-50" style="border-color: #818cf8; color: #818cf8;">更改路径</button>
+</div>
+</div>
+<!-- Tabs Section -->
+<div class="flex gap-8 border-b border-slate-200 mb-8" data-purpose="skill-tabs">
+<button class="pb-4 border-b-2 font-bold flex items-center gap-2 border-[#10B981] text-[#10B981]" style="border-color: #6366f1; color: #6366f1;">全局技能 (Global) <span class="bg-slate-200 text-slate-600 text-[10px] px-1.5 py-0.5 rounded-full" style="">12</span> <svg class="w-3.5 h-3.5 ml-1 text-slate-400 hover:text-brand-purple transition-colors cursor-pointer" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+<button class="pb-4 text-slate-400 font-medium hover:text-slate-600 flex items-center gap-2" style="">项目技能 (Project) <span class="bg-slate-100 text-slate-400 text-[10px] px-1.5 py-0.5 rounded-full" style="">4</span> <svg class="w-3.5 h-3.5 ml-1 text-slate-400 hover:text-brand-purple transition-colors cursor-pointer" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+</div>
+<!-- Skills Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Skill Card 1: File Search -->
+<div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col card-hover gradient-border-card">
+<h3 class="text-xl font-bold text-slate-900 mb-2 mt-2" style="">File Search</h3>
+<p class="text-slate-500 text-sm leading-relaxed mb-6 flex-1" style="">
+            高效索引本地文件，支持模糊匹配与全文检索能力。
+          </p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
+<div class="flex gap-3 text-slate-400"><button class="hover:text-indigo-500 transition-colors flex items-center" style=""><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-xs text-slate-500 ml-1" style="">同步到 Claude code</span></button>
+<button class="hover:text-indigo-500 transition-colors flex items-center" style="">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<button class="hover:text-red-500 transition-colors" style="">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<!-- Skill Card 2: Code Refactor -->
+<div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col card-hover gradient-border-card">
+<h3 class="text-xl font-bold text-slate-900 mb-2 mt-2" style="">Code Refactor</h3>
+<p class="text-slate-500 text-sm leading-relaxed mb-6 flex-1" style="">
+            基于最佳实践自动重构代码结构，优化可读性与性能。
+          </p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
+<div class="flex gap-3 text-slate-400"><button class="hover:text-indigo-500 transition-colors flex items-center" style=""><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-xs text-slate-500 ml-1" style="">同步到 Claude code</span></button>
+<button class="hover:text-indigo-500 transition-colors flex items-center" style=""><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+<button class="hover:text-red-500 transition-colors" style=""><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+</div>
+</div>
+</div>
+<!-- Skill Card 3: Bug Analyzer (Disabled State) -->
+<div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col card-hover gradient-border-card">
+<h3 class="text-xl font-bold text-slate-900 mb-2 mt-2" style="">Bug Analyzer</h3>
+<p class="text-slate-500 text-sm leading-relaxed mb-6 flex-1" style="">
+            分析错误堆栈与上下文，自动定位 Bug 根源并提供修复建议。
+          </p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
+<div class="flex gap-3 text-slate-400"><button class="hover:text-indigo-500 transition-colors flex items-center" style=""><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-xs text-slate-500 ml-1" style="">同步到 Claude code</span></button>
+<button class="hover:text-indigo-500 transition-colors flex items-center" style=""><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+<button class="hover:text-red-500 transition-colors" style=""><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+</div>
+</div>
+</div>
+<!-- Add New Skill Placeholder -->
+</div>
+</main>
+<!-- END: Main Content Area -->
+<!-- BEGIN: Status Bar -->
+<footer class="h-10 border-t border-slate-200 flex items-center px-6 shrink-0 text-[11px] text-slate-400 gap-4 justify-start bg-white/50 backdrop-blur-sm"><div class="flex items-center gap-4">
+<span class="" style="">Version V1.0.4</span>
+<button class="flex items-center gap-1 hover:text-slate-600" style="">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+    检查更新
+  </button>
+</div></footer>
+<!-- END: Status Bar -->
+</div>
+<!-- END: Main Layout -->
+</body></html>
